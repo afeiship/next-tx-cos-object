@@ -2,8 +2,8 @@
  * name: @feizheng/next-tx-cos-object
  * description: Tencent cos object for next.
  * homepage: https://github.com/afeiship/next-tx-cos-object
- * version: 1.0.0
- * date: 2020-04-30T04:06:27.175Z
+ * version: 1.0.1
+ * date: 2020-04-30T16:22:18.999Z
  * license: MIT
  */
 
@@ -40,20 +40,25 @@
         this.parseOptions(inOptions);
 
         return new Promise(function (resolve, reject) {
-          self.cos.getBucketAsync(inOptions).then(function (res) {
-            var objs = res.Contents.map(function (item) {
-              return { Key: item.Key };
-            });
-            var reqs = nx.mix(null, inOptions, { Objects: objs });
-            self
-              .dels(reqs)
-              .then(function (rst) {
-                resolve(rst);
-              })
-              .catch(function (err) {
-                reject(err);
+          self.cos
+            .getBucketAsync(inOptions)
+            .then(function (res) {
+              var objs = res.Contents.map(function (item) {
+                return { Key: item.Key };
               });
-          });
+              var reqs = nx.mix(null, inOptions, { Objects: objs });
+              self
+                .dels(reqs)
+                .then(function (rst) {
+                  resolve(rst);
+                })
+                .catch(function (err) {
+                  reject(err);
+                });
+            })
+            .catch(function (err) {
+              reject(err);
+            });
         });
       },
       parseOptions: function (inOptions) {

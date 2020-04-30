@@ -31,20 +31,25 @@
         this.parseOptions(inOptions);
 
         return new Promise(function (resolve, reject) {
-          self.cos.getBucketAsync(inOptions).then(function (res) {
-            var objs = res.Contents.map(function (item) {
-              return { Key: item.Key };
-            });
-            var reqs = nx.mix(null, inOptions, { Objects: objs });
-            self
-              .dels(reqs)
-              .then(function (rst) {
-                resolve(rst);
-              })
-              .catch(function (err) {
-                reject(err);
+          self.cos
+            .getBucketAsync(inOptions)
+            .then(function (res) {
+              var objs = res.Contents.map(function (item) {
+                return { Key: item.Key };
               });
-          });
+              var reqs = nx.mix(null, inOptions, { Objects: objs });
+              self
+                .dels(reqs)
+                .then(function (rst) {
+                  resolve(rst);
+                })
+                .catch(function (err) {
+                  reject(err);
+                });
+            })
+            .catch(function (err) {
+              reject(err);
+            });
         });
       },
       parseOptions: function (inOptions) {

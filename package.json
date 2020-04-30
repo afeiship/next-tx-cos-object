@@ -1,6 +1,6 @@
 {
   "name": "@feizheng/next-tx-cos-object",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tencent cos object for next.",
   "homepage": "https://github.com/afeiship/next-tx-cos-object",
   "author": {
