@@ -1,3 +1,12 @@
+/*!
+ * name: @feizheng/next-tx-cos-object
+ * description: Tencent cos object for next.
+ * homepage: https://github.com/afeiship/next-tx-cos-object
+ * version: 1.0.0
+ * date: 2020-04-30T04:06:27.175Z
+ * license: MIT
+ */
+
 (function () {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@feizheng/next-js-core2');
@@ -60,3 +69,5 @@
     module.exports = NxTxCosObject;
   }
 })();
+
+//# sourceMappingURL=next-tx-cos-object.js.map
