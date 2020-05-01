@@ -2,33 +2,27 @@
  * name: @feizheng/next-tx-cos-object
  * description: Tencent cos object for next.
  * homepage: https://github.com/afeiship/next-tx-cos-object
- * version: 1.0.1
- * date: 2020-04-30T16:22:18.999Z
+ * version: 1.0.2
+ * date: 2020-05-01T01:07:47.950Z
  * license: MIT
  */
 
 (function () {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@feizheng/next-js-core2');
-  var COS = require('cos-nodejs-sdk-v5');
+  var NxTxAbstractCos = require('@feizheng/next-tx-abstract-cos');
   var Promise = require('bluebird');
-  var DEFAULT_OPTIONS = {
-    SecretId: 'COS_SECRETID',
-    SecretKey: 'COS_SECRETKEY'
-  };
+  /* prettier-ignore */
 
+  var RETURN_KEY = function (item) { return { Key: item.Key }; };
   var API_HOOKS = {
     del: 'deleteObjectAsync',
     dels: 'deleteMultipleObjectAsync'
   };
 
   var NxTxCosObject = nx.declare('nx.TxCosObject', {
+    extends: NxTxAbstractCos,
     methods: {
-      init: function (inOptions) {
-        this.options = nx.mix(null, DEFAULT_OPTIONS, inOptions);
-        this.cos = new COS(this.options);
-        Promise.promisifyAll(this.cos, { context: this.cos });
-      },
       'put,del,dels': function (inName) {
         return function (inOptions) {
           this.parseOptions(inOptions);
@@ -39,33 +33,16 @@
         var self = this;
         this.parseOptions(inOptions);
 
-        return new Promise(function (resolve, reject) {
+        return new Promise(function (resolve) {
           self.cos
             .getBucketAsync(inOptions)
             .then(function (res) {
-              var objs = res.Contents.map(function (item) {
-                return { Key: item.Key };
-              });
+              var objs = res.Contents.map(RETURN_KEY);
               var reqs = nx.mix(null, inOptions, { Objects: objs });
-              self
-                .dels(reqs)
-                .then(function (rst) {
-                  resolve(rst);
-                })
-                .catch(function (err) {
-                  reject(err);
-                });
+              self.dels(reqs).then(resolve).catch(resolve);
             })
-            .catch(function (err) {
-              reject(err);
-            });
+            .catch(resolve);
         });
-      },
-      parseOptions: function (inOptions) {
-        if (!inOptions) return;
-        var appId = this.options.id;
-        var bucket = inOptions.Bucket;
-        bucket && (inOptions.Bucket = bucket.includes(appId) ? bucket : bucket + '-' + appId);
       }
     }
   });

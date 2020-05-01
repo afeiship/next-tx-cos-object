@@ -10,8 +10,8 @@
     test('dels', function (done) {
       txObj
         .empty({
-          Bucket: '1ksfu-01',
-          Region: 'ap-shanghai-fsi'
+          Bucket: '19967-05-1301823685',
+          Region: 'ap-beijing-fsi'
         })
         .then((res) => {
           console.log(res);

@@ -1,6 +1,6 @@
 {
   "name": "@feizheng/next-tx-cos-object",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tencent cos object for next.",
   "homepage": "https://github.com/afeiship/next-tx-cos-object",
   "author": {
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@feizheng/next-js-core2": "^2.4.4",
+    "@feizheng/next-tx-abstract-cos": "^1.0.0",
     "bluebird": "^3.7.2",
     "cos-nodejs-sdk-v5": "^2.5.20"
   },
