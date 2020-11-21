@@ -3,7 +3,7 @@
  * description: Tencent cos object for next.
  * homepage: https://github.com/afeiship/next-tx-cos-object
  * version: 1.0.0
- * date: 2020-11-21 11:12:41
+ * date: 2020-11-21 12:19:31
  * license: MIT
  */
 

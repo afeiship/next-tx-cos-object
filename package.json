@@ -38,5 +38,12 @@
   "dependencies": {
     "@jswork/next-tx-abstract-cos": "^1.0.0",
     "bluebird": "^3.7.2"
-  }
+  },
+  "keywords": [
+    "next",
+    "tx",
+    "cos",
+    "object",
+    "tencent"
+  ]
 }
