@@ -1,7 +1,7 @@
 (function() {
   const NxTxCosObject = require('../src');
 
-  var config = require('./config.json');
+  // var config = require('./config.json');
   var txObj = new NxTxCosObject(config);
 
   jest.setTimeout(30 * 1e3);
