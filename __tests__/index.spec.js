@@ -1,6 +1,6 @@
-(function () {
-  var nx = require('@feizheng/next-js-core2');
-  var NxTxCosObject = require('../src/next-tx-cos-object');
+(function() {
+  const NxTxCosObject = require('../src');
+
   var config = require('./config.json');
   var txObj = new NxTxCosObject(config);
 
@@ -8,15 +8,16 @@
 
   describe('NxTxCosObject.methods', function () {
     test('dels', function (done) {
-      txObj
-        .empty({
-          Bucket: '19967-05-1301823685',
-          Region: 'ap-beijing-fsi'
-        })
-        .then((res) => {
-          console.log(res);
-          done();
-        });
+      // txObj
+      //   .empty({
+      //     Bucket: '19967-05-1301823685',
+      //     Region: 'ap-beijing-fsi'
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     done();
+      //   });
     });
   });
+
 })();

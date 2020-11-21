@@ -1,10 +1,9 @@
 (function () {
   var global = global || this || window || Function('return this')();
-  var nx = global.nx || require('@feizheng/next-js-core2');
-  var NxTxAbstractCos = require('@feizheng/next-tx-abstract-cos');
+  var nx = global.nx || require('@jswork/next');
+  var NxTxAbstractCos = require('@jswork/next-tx-abstract-cos');
   var Promise = require('bluebird');
   /* prettier-ignore */
-
   var RETURN_KEY = function (item) { return { Key: item.Key }; };
   var API_HOOKS = {
     del: 'deleteObjectAsync',
